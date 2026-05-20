@@ -21,7 +21,7 @@ export default function ReportCardsPage() {
     if (!selectedClass) { toast.error('Select a class'); return; }
     setLoading(true);
     try {
-      const data = await api.get(`/report-cards?classId=${selectedClass}&term=${selectedTerm}`);
+      const data = await api.get(`/report-cards?class=${encodeURIComponent(selectedClass)}&term=${encodeURIComponent(selectedTerm)}`);
       setReportCards(data);
       toast.success(`${data.length} report cards generated`);
     } catch { toast.error('Failed to generate'); }
